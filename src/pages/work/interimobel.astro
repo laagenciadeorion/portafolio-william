@@ -1,0 +1,363 @@
+---
+import ContactCTA from '../../components/ContactCTA.astro';
+import Hero from '../../components/Hero.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const technologies = [
+  { name: 'WordPress', filename: 'wordpress.svg',filter: 'invert(0%)' },
+  { name: 'Elementor', filename: 'elementor.svg' },
+  { name: 'MongoDB', filename: 'mongodb.svg' },
+  { name: 'Node.js', filename: 'nodedotjs.svg' },
+  { name: 'Shopify', filename: 'shopify.svg' }
+];
+---
+
+<BaseLayout title="Interimobel | Portafolio">
+  <section class="hero">
+    <div class="stack gap-20">
+      <main class="wrapper about">
+        <Hero
+          title="Interimobel"
+          tagline="Transformando Espacios de Trabajo"
+        >
+          <img
+            width="1553"
+            height="973"
+            src="/assets/interimobel.jpg"
+            alt="Muebles"
+            class="rounded-image" 
+          />
+        </Hero>
+      </main>
+    </div>
+  </section>
+<div class="visit-site" style="text-align: center; margin: 3rem 0;">
+  <a 
+    href="https://interimobel.mx/" 
+    target="_blank"
+    rel="noopener noreferrer"
+    class="visit-button"
+    style="
+      display: inline-block;
+      padding: 14px 28px;
+      background: linear-gradient(135deg, #7e22ce 0%, #9333ea 100%); /* Degradado morado */
+      color: white;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(124, 58, 237, 0.3);
+      border: 2px solid transparent;
+    "
+    onmouseover="
+      this.style.transform='translateY(-3px)';
+      this.style.boxShadow='0 6px 16px rgba(124, 58, 237, 0.4)';
+      this.style.borderColor='#ffffff55';
+    "
+    onmouseout="
+      this.style.transform='';
+      this.style.boxShadow='0 4px 6px rgba(124, 58, 237, 0.3)';
+      this.style.borderColor='transparent';
+    "
+  >
+    Visitar Interimobel
+  </a>
+</div>
+  <section class="tech-grid-section">
+  <h2 class="section-title">Tecnologías Utilizadas</h2>
+  <div class="tech-grid">
+    {technologies.map((tech) => (
+      <div class="tech-card">
+        <div class="tech-icon">
+          <img 
+            src={`/assets/${tech.filename}`} 
+            alt={tech.name}
+            loading="lazy"
+            class="tech-svg"
+          />
+        </div>
+        <span class="tech-name">{tech.name}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<section class="highlights">
+    <h2 class="section-title">¿Por qué elegir Interimobel?</h2>
+    <h3 class="section-subtitle" style="font-size: 1.3rem; line-height: 1.5; max-width: 800px; margin: -1.5rem auto 3rem;">
+        <strong>Soluciones integrales:</strong> Diseño, fabricación e instalación de mobiliario corporativo a medida, optimizando espacios para productividad y bienestar laboral.
+    </h3>
+
+    <div class="highlight-cards-container">  <!-- Contenedor principal añadido -->
+        <!-- Sección Branding -->
+        <div class="highlight-section">
+            <h3 class="highlight-section-title"></h3>
+            <div class="highlight-cards">
+                <div class="highlight-card">
+                    <div class="highlight-icon">✏️</div>
+                    <h3>Formulario</h3>
+                    <p>Formulario interactivo para captar requisitos técnicos (medidas, materiales, normativas) y estilo corporativo.</p>
+                    
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-icon">🎨</div>
+                    <h3>Prototipado 3D</h3>
+                    Configurador online donde ajustar medidas, colores y acabados con renderizado en tiempo real.</p>
+                 
+                </div>
+            </div>
+        </div>
+
+        <!-- Sección Desarrollo -->
+        <div class="highlight-section">
+            <h3 class="highlight-section-title"></h3>
+            <div class="highlight-cards">
+                <div class="highlight-card">
+                    <div class="highlight-icon">💻</div>
+                    <h3>Shopify Avanzado</h3>
+                    <p>Implementación premium con catálogo de +150 productos, filtros inteligentes, suscripciones recurrentes y checkout optimizado para 3.8% de conversión.</p>
+                 
+                </div>
+                 <div class="highlight-section">
+            
+            <div class="highlight-cards">
+                <div class="highlight-card">
+                    <div class="highlight-icon">📈</div>
+                    <h3>Seo y Metadatos</h3>
+                    <p>Estrategia 360°: Google Ads (ROAS 4.2), email marketing automatizado, landings de alto rendimiento y +$120K en ventas (primeros 6 meses).</p>
+                    <div class="tech-pills">
+                        <span class="pill">Meta Ads</span>
+                        <span class="pill">Klaviyo</span>
+                        <span class="pill">Google Analytics</span>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+       
+        </div>
+    </div>
+</section>
+
+  <ContactCTA />
+
+  <style is:global>
+    /* Estilos base */
+    body {
+      font-family: var(--font-body);
+      color: var(--gray-200);
+      line-height: 1.6;
+      margin: 0;
+      background-color: var(--gray-999);
+    }
+
+    .hero {
+      position: relative;
+    }
+
+    .tech-grid-section {
+      padding: 4rem 2rem;
+      background: var(--gray-900);
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .tech-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      transition: all 0.3s ease;
+    }
+
+   .tech-icon {
+  width: 80px;
+  height: 80px;
+  background: var(--gray-600); /* Fondo que contrasta con ambos temas */
+  border-radius: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--theme-transition);
+}
+.rounded-image {
+  border-radius: 20px; /* Ajusta este valor para más/menos redondeo */
+  width: 100%; /* Ocupa todo el ancho disponible */
+  height: auto; /* Mantiene la proporción original */
+  display: block; /* Elimina espacios no deseados debajo de la imagen */
+  max-width: 1000px; /* Opcional: limita el ancho máximo si es muy grande */
+  margin: 0 auto; /* Centra la imagen horizontalmente */
+  box-shadow: var(--shadow-md); /* Sombra opcional para mejor efecto */
+}
+    .tech-svg {
+      width: 50px;
+      height: 50px;
+      object-fit: contain;
+      transition: all 0.3s ease;
+    }
+
+    .tech-name {
+      font-weight: 500;
+      color: var(--accent-regular);
+      text-align: center;
+    }
+
+    .tech-card:hover .tech-icon {
+      transform: scale(1.1);
+      box-shadow: var(--shadow-md);
+    }
+
+    .tech-card:hover .tech-svg {
+      transform: scale(1.15);
+    }
+
+    .highlights {
+      padding: 4rem 2rem;
+      background: var(--gray-900);
+    }
+
+     .highlight-cards-container {
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+     
+    .highlight-section-title {
+        color: var(--accent-light);
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .highlight-section-title:after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background: var(--accent-regular);
+        margin: 0.5rem auto 0;
+    }
+@media (max-width: 768px) {
+        .highlight-section {
+            padding: 1.5rem;
+        }
+        
+        .highlight-card {
+            width: 100%;
+            max-width: 350px;
+        }
+    }
+    .section-title {
+      text-align: center;
+      font-size: var(--text-3xl);
+      margin-bottom: 3rem;
+      color: var(--accent-regular);
+      position: relative;
+      font-family: var(--font-brand);
+    }
+
+    .section-title:after {
+      content: '';
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: var(--accent-light);
+      margin: 1rem auto 0;
+    }
+
+    .highlight-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .highlight-card {
+      background: var(--gray-999);
+      border-radius: 1rem;
+      padding: 2rem;
+      width: 280px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .highlight-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .highlight-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .highlight-card:hover .highlight-icon {
+      transform: scale(1.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-image-container {
+        width: 85%;
+        height: 55vh;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .tech-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+      
+      .tech-icon {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .tech-svg {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .highlight-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .highlight-card {
+        width: 100%;
+        max-width: 350px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero {
+        min-height: auto;
+      }
+      
+      .tech-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</BaseLayout>

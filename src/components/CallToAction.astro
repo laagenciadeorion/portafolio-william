@@ -1,0 +1,69 @@
+---
+interface Props {
+  href: string;
+  target?: string;
+  rel?: string;
+  className?: string;
+}
+
+const { href, target = '_self', rel, className = '' } = Astro.props;
+---
+
+<a 
+  href={href}
+  target={target}
+  rel={rel}
+  class={`cta-button ${className}`}
+>
+  <slot />
+</a>
+
+<style>
+  .cta-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.8rem 2rem;
+    gap: 0.8rem;
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 1;
+    border-radius: 999rem;
+    overflow: hidden;
+    background: var(--gradient-accent-orange);
+    box-shadow: var(--shadow-md);
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    font-size: var(--text-lg);
+  }
+
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Efecto overlay al hacer hover */
+  .cta-button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .cta-button:hover::after {
+    opacity: 1;
+  }
+
+  @media (min-width: 768px) {
+    .cta-button {
+      padding: 1rem 2.5rem;
+      font-size: var(--text-xl);
+    }
+  }
+</style>

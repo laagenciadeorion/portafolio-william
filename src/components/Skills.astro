@@ -1,0 +1,64 @@
+---
+import Icon from './Icon.astro';
+---
+
+<section class="box skills">
+	<div class="stack gap-2 lg:gap-4">
+		<Icon icon="terminal-window" color="var(--accent-regular)" size="2.5rem" gradient />
+		<h2>Desarrollador Web</h2>
+		<p>Desarrollo soluciones web desde el código hasta la estrategia. Utilizo React, Flutter y WordPress para construir plataformas modernas, y complemento cada proyecto con optimización SEO, integración de metadatos y una visión enfocada en resultados digitales.</p>
+	</div>
+	<div class="stack gap-2 lg:gap-4">
+		<Icon icon="paint-brush" color="var(--accent-regular)" size="2.5rem" gradient />
+		<h2>Creatividad que se Gana </h2>
+		<p>No solo pienso ideas: las diseño, las edito, las animo, las programo y les doy voz. Con herramientas digitales,transformo conceptos en experiencias que se ven, se escuchan, se usan y se viven.
+
+Desde una identidad visual hasta una plataforma funcional o un reel publicitario, soy el puente entre lo que se imagina </p>
+	</div>
+	<div class="stack gap-2 lg:gap-4">
+		<Icon icon="strategy" color="var(--accent-regular)" size="2.5rem" gradient />
+		<h2>Mentalidad Estrategica</h2>
+		<p>No solo pienso fuera de la caja: la rediseño, la optimizo y la hago escalable. Mi enfoque estratégico va más allá de resolver problemas; anticipo oportunidades, conecto puntos invisibles y transformo desafíos en ventajas competitivas.</p>
+	</div>
+</section>
+
+<style>
+	.box {
+		border: 1px solid var(--gray-800);
+		border-radius: 0.75rem;
+		padding: 1.5rem;
+		background-color: var(--gray-999_40);
+		box-shadow: var(--shadow-sm);
+	}
+
+	.skills {
+		display: flex;
+		flex-direction: column;
+		gap: 3rem;
+	}
+
+	.skills h2 {
+		font-size: var(--text-lg);
+	}
+
+	.skills p {
+		color: var(--gray-400);
+	}
+
+	@media (min-width: 50em) {
+		.box {
+			border-radius: 1.5rem;
+			padding: 2.5rem;
+		}
+
+		.skills {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 5rem;
+		}
+
+		.skills h2 {
+			font-size: var(--text-2xl);
+		}
+	}
+</style>

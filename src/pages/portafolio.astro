@@ -1,0 +1,134 @@
+---
+// src/layouts/PortfolioLayout.astro
+import Footer from '../components/Footer.astro';
+import MainHead from '../components/MainHead.astro';
+import Nav from '../components/Nav.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="es" class="scroll-smooth">
+  <head>
+    <MainHead title={title} description={description} />
+  </head>
+  <body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <!-- Fondo dinámico con partículas opcional -->
+    <div id="particles-js" class="fixed inset-0 -z-10 opacity-20 dark:opacity-10"></div>
+    
+    <div class="min-h-screen flex flex-col">
+      <Nav client:load />
+      
+      <!-- Contenido principal con animación suave -->
+      <main class="flex-grow px-6 py-12 md:px-12 lg:px-24">
+        <div class="max-w-6xl mx-auto animate-fade-in">
+          <slot />
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
+
+    <!-- Scripts para interactividad -->
+  <script>
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(this: HTMLAnchorElement, e: Event) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href')!);
+      target?.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
+    <!-- Estilos mejorados -->
+    <style is:global>
+      :root {
+        --color-primary: 79 70 229; /* Indigo */
+        --color-secondary: 236 72 153; /* Pink */
+      }
+      
+      .theme-dark {
+        --color-primary: 99 102 241;
+        --color-secondary: 217 70 239;
+      }
+      
+      @keyframes fade-in {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      .animate-fade-in {
+        animation: fade-in 0.6s ease-out forwards;
+      }
+      
+      /* Mejoras para el fondo */
+      .backgrounds {
+        background: 
+          url('/assets/backgrounds/noise.png') top center/220px repeat,
+          linear-gradient(
+            to bottom,
+            rgba(var(--color-primary), 0.05) 0%,
+            transparent 30%
+          ),
+          var(--gray-50);
+        background-blend-mode: overlay, normal;
+      }
+      
+      .theme-dark .backgrounds {
+        background: 
+          url('/assets/backgrounds/noise.png') top center/220px repeat,
+          linear-gradient(
+            to bottom,
+            rgba(var(--color-primary), 0.1) 0%,
+            transparent 30%
+          ),
+          var(--gray-900);
+      }
+      
+      /* Efecto hover para tarjetas */
+      .project-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      
+      .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      }
+      
+      .theme-dark .project-card:hover {
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+    
+    <!-- Opcional: Carga condicional de librerías de efectos -->
+    {import.meta.env.PROD && (
+      <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" defer></script>
+      <script is:inline>
+        if (typeof particlesJS === 'function') {
+          particlesJS('particles-js', {
+            particles: {
+              number: { value: 80, density: { enable: true, value_area: 800 } },
+              color: { value: "#6366f1" },
+              shape: { type: "circle" },
+              opacity: { value: 0.5, random: true },
+              size: { value: 3, random: true },
+              line_linked: { enable: true, distance: 150, color: "#6366f1", opacity: 0.4, width: 1 },
+              move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+            },
+            interactivity: {
+              detect_on: "canvas",
+              events: {
+                onhover: { enable: true, mode: "repulse" },
+                onclick: { enable: true, mode: "push" }
+              }
+            }
+          });
+        }
+      </script>
+    )}
+  </body>
+</html>

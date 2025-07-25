@@ -1,0 +1,83 @@
+---
+import CallToAction from './CallToAction.astro';
+import Icon from './Icon.astro';
+
+// Configuración WhatsApp
+const phoneNumber = '528136407893'; // Reemplaza con tu número
+const defaultMessage = 'Hola, Quiero que desarrolles mi web.';
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`;
+---
+
+<div class="contact-container">
+  <div class="text-content">
+    <h2>¿Trabajamos Juntos?</h2>
+    <p class="subtext">Contáctame para discutir tu proyecto</p>
+  </div>
+  
+  <CallToAction 
+    href={whatsappUrl} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="whatsapp-button"
+  >
+    <span class="button-text">WhatsApp</span>
+    <Icon icon="paper-plane-tilt" size="1.2em" />
+  </CallToAction>
+</div>
+
+<style>
+  .contact-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    padding: 3rem;
+    background-color: var(--gray-999_40);
+    border-radius: 1rem;
+    border: 1px solid var(--gray-800);
+    margin: 2rem 0;
+  }
+
+  .text-content {
+    flex: 1;
+  }
+
+  h2 {
+    font-size: var(--text-2xl);
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  .subtext {
+    color: var(--gray-500);
+    font-size: var(--text-md);
+    margin: 0;
+  }
+
+  .whatsapp-button {
+    background: var(--gradient-accent-green) !important;
+    transition: all 0.3s ease;
+  }
+
+  .whatsapp-button:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .button-text {
+    position: relative;
+    display: inline-block;
+  }
+
+  @media (max-width: 768px) {
+    .contact-container {
+      flex-direction: column;
+      text-align: center;
+      padding: 2rem;
+    }
+    
+    .text-content {
+      margin-bottom: 1.5rem;
+    }
+  }
+</style>
